@@ -37,7 +37,7 @@ int StringCalculator::CalculateAdd(const string &input) {
 }
 
 // Helper function to split a string by a delimiter
-vector<string> StringCalculator::split(const string &str, const string &delimiters) {
+vector<string> split(const string &str, const string &delimiters) {
     vector<string> tokens;
     size_t start = 0, end = 0;
     while ((end = str.find_first_of(delimiters, start)) != string::npos) {
@@ -49,17 +49,17 @@ vector<string> StringCalculator::split(const string &str, const string &delimite
 }
 
 // Helper function to convert a string to an integer
-int StringCalculator::toInt(const string &s) {
+int toInt(const string &s) {
     return stoi(s);
 }
 
 // Helper function to ignore numbers greater than 1000
-int StringCalculator::filterLargeNumbers(int num) {
+int filterLargeNumbers(int num) {
     return num > 1000 ? 0 : num;
 }
 
 // Function to collect negative numbers from the list
-vector<int> StringCalculator::collectNegatives(const vector<int> &numbers) {
+vector<int> collectNegatives(const vector<int> &numbers) {
     vector<int> negatives;
     for (int num : numbers) {
         if (num < 0) {
@@ -70,7 +70,7 @@ vector<int> StringCalculator::collectNegatives(const vector<int> &numbers) {
 }
 
 // Function to create the exception message for negative numbers
-string StringCalculator::createNegativesMessage(const vector<int> &negatives) {
+string createNegativesMessage(const vector<int> &negatives) {
     stringstream ss;
     ss << "negatives not allowed: ";
     for (size_t i = 0; i < negatives.size(); ++i) {
@@ -81,7 +81,7 @@ string StringCalculator::createNegativesMessage(const vector<int> &negatives) {
 }
 
 // Function to check and throw an exception if there are negative numbers
-void StringCalculator::checkNegatives(const vector<int> &numbers) {
+void checkNegatives(const vector<int> &numbers) {
     vector<int> negatives = collectNegatives(numbers);
     if (!negatives.empty()) {
         throw runtime_error(createNegativesMessage(negatives));
