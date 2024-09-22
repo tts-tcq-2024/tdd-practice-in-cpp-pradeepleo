@@ -1,8 +1,9 @@
 #ifndef STRINGCALCULATOR_H
 #define STRINGCALCULATOR_H
 #include <string>
-
-    int CalculateAdd(const std::string &input); 
-
+class StringCalculator {
+public:
+    int CalculateAdd(const std::string &input);  // Renamed method
+};
 
 #endif // STRINGCALCULATOR_H
