@@ -2,16 +2,19 @@
 #include <sstream>
 #include <vector>
 #include <stdexcept>
+#include <string>
+
+using namespace std;
 
 class StringCalculator {
 
 public:
     // Main CalculateAdd function that handles sum calculation, custom delimiters, and exceptions
-    int CalculateAdd(const std::string &input) {
+    int CalculateAdd(const string &input) {
         if (input.empty()) return 0;
 
-        std::string delimiters = ",\n";
-        std::string numbersStr = input;
+        string delimiters = ",\n";
+        string numbersStr = input;
 
         // Handle custom delimiters
         if (input.substr(0, 2) == "//") {
@@ -20,11 +23,11 @@ public:
             numbersStr = input.substr(delimiterEnd + 1);
         }
 
-        std::vector<std::string> strNumbers = split(numbersStr, delimiters);
-        std::vector<int> numbers;
+        vector<string> strNumbers = split(numbersStr, delimiters);
+        vector<int> numbers;
 
         // Convert string numbers to integers, and apply filter for numbers > 1000
-        for (const std::string &numStr : strNumbers) {
+        for (const string &numStr : strNumbers) {
             if (!numStr.empty()) {
                 numbers.push_back(filterLargeNumbers(toInt(numStr)));
             }
@@ -44,10 +47,10 @@ public:
 
 private:
     // Helper function to split a string by a delimiter
-    std::vector<std::string> split(const std::string &str, const std::string &delimiters) {
-        std::vector<std::string> tokens;
+    vector<string> split(const string &str, const string &delimiters) {
+        vector<string> tokens;
         size_t start = 0, end = 0;
-        while ((end = str.find_first_of(delimiters, start)) != std::string::npos) {
+        while ((end = str.find_first_of(delimiters, start)) != string::npos) {
             tokens.push_back(str.substr(start, end - start));
             start = end + 1;
         }
@@ -56,8 +59,8 @@ private:
     }
 
     // Helper function to convert a string to an integer
-    int toInt(const std::string &s) {
-        return std::stoi(s);
+    int toInt(const string &s) {
+        return stoi(s);
     }
 
     // Helper function to ignore numbers greater than 1000
@@ -66,8 +69,8 @@ private:
     }
 
     // Function to collect negative numbers from the list
-    std::vector<int> collectNegatives(const std::vector<int> &numbers) {
-        std::vector<int> negatives;
+    vector<int> collectNegatives(const vector<int> &numbers) {
+        vector<int> negatives;
         for (int num : numbers) {
             if (num < 0) {
                 negatives.push_back(num);
@@ -77,8 +80,8 @@ private:
     }
 
     // Function to create the exception message for negative numbers
-    std::string createNegativesMessage(const std::vector<int> &negatives) {
-        std::stringstream ss;
+    string createNegativesMessage(const vector<int> &negatives) {
+        stringstream ss;
         ss << "negatives not allowed: ";
         for (size_t i = 0; i < negatives.size(); ++i) {
             if (i > 0) ss << ",";
@@ -88,10 +91,10 @@ private:
     }
 
     // Function to check and throw an exception if there are negative numbers
-    void checkNegatives(const std::vector<int> &numbers) {
-        std::vector<int> negatives = collectNegatives(numbers);
+    void checkNegatives(const vector<int> &numbers) {
+        vector<int> negatives = collectNegatives(numbers);
         if (!negatives.empty()) {
-            throw std::runtime_error(createNegativesMessage(negatives));
+            throw runtime_error(createNegativesMessage(negatives));
         }
     }
 };  
