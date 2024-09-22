@@ -3,7 +3,7 @@
 #include <vector>
 #include <stdexcept>
 
-class SoundexCodeMap {
+class StringCalculator {
 
 public:
     // Main Add function that handles sum calculation, custom delimiters, and exceptions
