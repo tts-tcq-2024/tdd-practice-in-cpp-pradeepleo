@@ -7,34 +7,6 @@
 
 using namespace std;
 
-// Main CalculateAdd function that handles sum calculation, custom delimiters, and exceptions
-int StringCalculator::CalculateAdd(const string &input) {
-    if (input.empty()) return 0;
-    string delimiters = ",\n";
-    string numbersStr = input;
-    // Handle custom delimiters
-    if (input.substr(0, 2) == "//") {
-        size_t delimiterEnd = input.find("\n");
-        delimiters = input.substr(2, delimiterEnd - 2);
-        numbersStr = input.substr(delimiterEnd + 1);
-    }
-    vector<string> strNumbers = split(numbersStr, delimiters);
-    vector<int> numbers;
-    // Convert string numbers to integers, and apply filter for numbers > 1000
-    for (const string &numStr : strNumbers) {
-        if (!numStr.empty()) {
-            numbers.push_back(filterLargeNumbers(toInt(numStr)));
-        }
-    }
-    // Check for negatives and throw exception if any
-    checkNegatives(numbers);
-    // Calculate the sum
-    int sum = 0;
-    for (int num : numbers) {
-        sum += num;
-    }
-    return sum;
-}
 
 // Helper function to split a string by a delimiter
 vector<string> split(const string &str, const string &delimiters) {
@@ -86,4 +58,34 @@ void checkNegatives(const vector<int> &numbers) {
     if (!negatives.empty()) {
         throw runtime_error(createNegativesMessage(negatives));
     }
+}
+
+
+// Main CalculateAdd function that handles sum calculation, custom delimiters, and exceptions
+int StringCalculator::CalculateAdd(const string &input) {
+    if (input.empty()) return 0;
+    string delimiters = ",\n";
+    string numbersStr = input;
+    // Handle custom delimiters
+    if (input.substr(0, 2) == "//") {
+        size_t delimiterEnd = input.find("\n");
+        delimiters = input.substr(2, delimiterEnd - 2);
+        numbersStr = input.substr(delimiterEnd + 1);
+    }
+    vector<string> strNumbers = split(numbersStr, delimiters);
+    vector<int> numbers;
+    // Convert string numbers to integers, and apply filter for numbers > 1000
+    for (const string &numStr : strNumbers) {
+        if (!numStr.empty()) {
+            numbers.push_back(filterLargeNumbers(toInt(numStr)));
+        }
+    }
+    // Check for negatives and throw exception if any
+    checkNegatives(numbers);
+    // Calculate the sum
+    int sum = 0;
+    for (int num : numbers) {
+        sum += num;
+    }
+    return sum;
 }
