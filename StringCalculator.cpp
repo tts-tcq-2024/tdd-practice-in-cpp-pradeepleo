@@ -7,7 +7,7 @@ class StringCalculator {
 
 public:
     // Main Add function that handles sum calculation, custom delimiters, and exceptions
-    int Add(const std::string &input) {
+    int add(const std::string &input) {
         if (input.empty()) return 0;
 
         std::string delimiters = ",\n";
@@ -94,4 +94,4 @@ private:
             throw std::runtime_error(createNegativesMessage(negatives));
         }
     }
-};  // Don't forget to terminate the class definition with a semicolon
+};  
