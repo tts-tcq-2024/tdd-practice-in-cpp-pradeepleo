@@ -6,8 +6,8 @@
 class StringCalculator {
 
 public:
-    // Main Add function that handles sum calculation, custom delimiters, and exceptions
-    int add(const std::string &input) {
+    // Main CalculateAdd function that handles sum calculation, custom delimiters, and exceptions
+    int CalculateAdd(const std::string &input) {
         if (input.empty()) return 0;
 
         std::string delimiters = ",\n";
