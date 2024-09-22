@@ -62,32 +62,39 @@ void checkNegatives(const vector<int> &numbers) {
 }
 
 
-
-// Main CalculateAdd function that handles sum calculation, custom delimiters, and exceptions
-int StringCalculator::CalculateAdd(const string &input) {
-    if (input.empty()) return 0;
-    string delimiters = ",\n";
-    string numbersStr = input;
-    // Handle custom delimiters
+pair<string, string> extractCustomDelimiter(const string &input) {
     if (input.substr(0, 2) == "//") {
         size_t delimiterEnd = input.find("\n");
-        delimiters = input.substr(2, delimiterEnd - 2);
-        numbersStr = input.substr(delimiterEnd + 1);
+        return {input.substr(2, delimiterEnd - 2), input.substr(delimiterEnd + 1)};
     }
+    return {",\n", input};
+}
+
+vector<int> parseNumbers(const string &numbersStr, const string &delimiters) {
     vector<string> strNumbers = split(numbersStr, delimiters);
     vector<int> numbers;
-    // Convert string numbers to integers, and apply filter for numbers > 1000
     for (const string &numStr : strNumbers) {
         if (!numStr.empty()) {
             numbers.push_back(filterLargeNumbers(toInt(numStr)));
         }
     }
-    // Check for negatives and throw exception if any
-    checkNegatives(numbers);
-    // Calculate the sum
+    return numbers;
+}
+
+int sumNumbers(const vector<int> &numbers) {
     int sum = 0;
     for (int num : numbers) {
         sum += num;
     }
     return sum;
+}
+
+// Main CalculateAdd function with reduced CCN
+int StringCalculator::CalculateAdd(const string &input) {
+    if (input.empty()) return 0;
+    
+    auto [delimiters, numbersStr] = extractCustomDelimiter(input);
+    vector<int> numbers = parseNumbers(numbersStr, delimiters);
+    checkNegatives(numbers);
+    return sumNumbers(numbers);
 }
