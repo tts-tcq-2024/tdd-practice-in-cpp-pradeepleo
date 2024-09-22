@@ -5,7 +5,7 @@
 
 class StringCalculator {
 public:
-    int Add(const std::string &input);  // Declare the Add function in the class
+    int add(const std::string &input); 
 };
 
 #endif // STRINGCALCULATOR_H
