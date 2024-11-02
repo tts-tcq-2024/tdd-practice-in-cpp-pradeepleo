@@ -19,6 +19,12 @@ int toInt(const string &s) {
     }
 }
 
+// Helper function to add a token if it is not empty
+void addTokenIfNotEmpty(vector<string> &tokens, const string &str, size_t start, size_t end) {
+    if (end > start) {
+        tokens.push_back(str.substr(start, end - start));
+    }
+}
 
 vector<string> split(const string &str, const string &delimiters) {
     vector<string> tokens;
@@ -31,12 +37,7 @@ vector<string> split(const string &str, const string &delimiters) {
     return tokens;
 }
 
-// Helper function to add a token if it is not empty
-void addTokenIfNotEmpty(vector<string> &tokens, const string &str, size_t start, size_t end) {
-    if (end > start) {
-        tokens.push_back(str.substr(start, end - start));
-    }
-}
+
 
 
 // Helper function to ignore numbers greater than 1000
@@ -74,6 +75,10 @@ void checkNegatives(const vector<int> &numbers) {
     }
 }
 
+// Helper function to check if the input format starts with "//" and has a newline
+bool isCustomDelimiterFormat(const string &input) {
+    return input.substr(0, 2) == "//" && input.find("\n") != string::npos;
+}
 
 pair<string, string> extractCustomDelimiter(const string &input) {
     if (!isCustomDelimiterFormat(input)) {
@@ -83,10 +88,7 @@ pair<string, string> extractCustomDelimiter(const string &input) {
     return {input.substr(2, delimiterEnd - 2), input.substr(delimiterEnd + 1)};
 }
 
-// Helper function to check if the input format starts with "//" and has a newline
-bool isCustomDelimiterFormat(const string &input) {
-    return input.substr(0, 2) == "//" && input.find("\n") != string::npos;
-}
+
 
 
 vector<int> parseNumbers(const string &numbersStr, const string &delimiters) {
