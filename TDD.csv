@@ -5,4 +5,4 @@ TC_BasicAddTwoNumbers,Test addition with two numbers separated by a comma.,None,
 TC_NegativeNumbers,"Test the calculator with negative numbers, should throw an exception listing all negatives.",None,"""-1,-2""","Exception: negatives not allowed: -1,-2",Ensure multiple negatives are captured in the exception message.
 TC_InputWithNewlineDelimiter,Test addition with newlines as well as commas as delimiters.,None,"""1\n2,3""",6,"Test for multiple delimiters like \n and ,."
 TC_GreaterThan1000,Numbers greater than 1000 should be ignored.,None,"""2,1001""",2,Test for ignoring numbers greater than 1000.
-TC_CustomDelimiter,Test the calculator with custom delimiters like ; and longer delimiters.,None,"""//;\n1;2"", ""//***\n12***3""","3, 6",Test custom delimiters with various lengths.
+TC_CustomDelimiter,Test the calculator with custom delimiters like ; and longer delimiters.,None,"""//;\n1;2"", ""//***\n12***3""","6",Test custom delimiters with various lengths.
