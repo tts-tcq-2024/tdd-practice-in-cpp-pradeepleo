@@ -62,3 +62,27 @@ TEST(StringCalculatorAddTests, ExpectSumWithCustomDelimiter) {
 
     ASSERT_EQ(result, expectedresult);
 }
+
+// test case for input with a number just below and above 1000
+TEST(StringCalculatorAddTests, NumbersGreaterThan1000IgnoredInSum) {
+    int expectedresult1 = 1001;
+    std::string input1 = "999,2";
+    StringCalculator objUnderTest;
+    int result1 = objUnderTest.CalculateAdd(input1);
+    ASSERT_EQ(result1, expectedresult1);
+
+    int expectedresult2 = 2;
+    std::string input2 = "1001,2";
+    int result2 = objUnderTest.CalculateAdd(input2);
+    ASSERT_EQ(result2, expectedresult2);
+}
+
+//test case for input with non-numeric strings
+TEST(StringCalculatorAddTests, NonNumericInputReturnsZero) {
+    int expectedresult = 0;
+    std::string input = "Hello, world!";
+    StringCalculator objUnderTest;
+    int result = objUnderTest.CalculateAdd(input);
+
+    ASSERT_EQ(result, expectedresult);
+}
