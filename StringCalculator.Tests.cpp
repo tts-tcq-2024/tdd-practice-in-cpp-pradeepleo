@@ -63,7 +63,7 @@ TEST(StringCalculatorAddTests, ExpectSumWithCustomDelimiter) {
     ASSERT_EQ(result, expectedresult);
 }
 
-// test case for input with a number just below and above 1000
+// test case for input with a number just below and above 1000 :Boundary condition
 TEST(StringCalculatorAddTests, NumbersGreaterThan1000IgnoredInSum) {
     int expectedresult1 = 1001;
     std::string input1 = "999,2";
