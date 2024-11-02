@@ -23,7 +23,7 @@ add_executable(
 )
 target_link_libraries(
   cleancode
-  GTest::gmock_main
+  GTest::gtest_main
   gcov
 )
 

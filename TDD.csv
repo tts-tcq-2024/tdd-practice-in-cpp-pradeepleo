@@ -1,0 +1,10 @@
+Unique ID,TestCase Name,Description,Precondition,Input Data,Expected Output
+SC_TST01 ,TC_EmptyString,Test the calculator with an empty string. It should return 0.,None,"""""",0
+SC_TST02,TC_SingleZero,"Test the calculator with a single number, 0. It should return 0.",None,"""0""",0
+SC_TST03,TC_BasicAddTwoNumbers,Test addition with two numbers separated by a comma.,None,"""1,2""",3
+SC_TST04,TC_NegativeNumbers,"Test the calculator with negative numbers, should throw an exception listing all negatives.",None,"""-1,-2""","Exception: negatives not allowed: -1,-2"
+SC_TST05,TC_InputWithNewlineDelimiter,Test addition with newlines as well as commas as delimiters.,None,"""1\n2,3""",6
+SC_TST06,TC_GreaterThan1000,Numbers greater than 1000 should be ignored.,None,"""2,1001""",2
+SC_TST07,TC_CustomDelimiter,Test the calculator with custom delimiters like ; and longer delimiters.,None,"""//;\n1;2"", ""//***\n12***3""","3, 6"
+SC_TST08,TC_NumbersGreaterThan1000_IgnoredInSum,Verifies that numbers only  greater than 1000 are ignored.,None,"""999,2""",1001
+SC_TST09,TC_NonNumericInput_ReturnsZero,Ensures non-numeric input returns 0.,None," ""Hello, world!""",0
