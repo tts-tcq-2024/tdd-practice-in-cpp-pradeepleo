@@ -36,11 +36,6 @@ vector<string> split(const string &str, const string &delimiters) {
     return tokens;
 }
 
-// Helper function to convert a string to an integer
-int toInt(const string &s) {
-    return stoi(s);
-}
-
 // Helper function to ignore numbers greater than 1000
 int filterLargeNumbers(int num) {
     return num > 1000 ? 0 : num;
