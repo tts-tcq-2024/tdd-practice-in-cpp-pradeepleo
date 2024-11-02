@@ -9,15 +9,30 @@ using namespace std;
 
 
 
+int toInt(const string &s) {
+    try {
+        return stoi(s);
+    } catch (const std::invalid_argument&) {
+        return 0; // Ignore non-numeric input
+    } catch (const std::out_of_range&) {
+        return 0; // Handle very large numbers that might cause out of range errors
+    }
+}
+
+
 // Helper function to split a string by a delimiter
 vector<string> split(const string &str, const string &delimiters) {
     vector<string> tokens;
     size_t start = 0, end = 0;
     while ((end = str.find_first_of(delimiters, start)) != string::npos) {
-        tokens.push_back(str.substr(start, end - start));
+        if (end > start) { // Avoid adding empty tokens
+            tokens.push_back(str.substr(start, end - start));
+        }
         start = end + 1;
     }
-    tokens.push_back(str.substr(start));
+    if (start < str.size()) { // Add the last token if not empty
+        tokens.push_back(str.substr(start));
+    }
     return tokens;
 }
 
@@ -63,11 +78,13 @@ void checkNegatives(const vector<int> &numbers) {
 
 
 pair<string, string> extractCustomDelimiter(const string &input) {
-    if (input.substr(0, 2) == "//") {
+    if (input.substr(0, 2) == "//" && input.find("\n") != string::npos) {
         size_t delimiterEnd = input.find("\n");
-        return {input.substr(2, delimiterEnd - 2), input.substr(delimiterEnd + 1)};
+        if (delimiterEnd != string::npos && delimiterEnd > 2) {
+            return {input.substr(2, delimiterEnd - 2), input.substr(delimiterEnd + 1)};
+        }
     }
-    return {",\n", input};
+    return {",\n", input}; // Default delimiters if no valid custom delimiter is found
 }
 
 vector<int> parseNumbers(const string &numbersStr, const string &delimiters) {
