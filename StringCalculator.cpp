@@ -53,7 +53,7 @@ string createNegativesMessage(const vector<int> &negatives) {
     return ss.str();
 }
 
-// Function to check and throw an exception if there are negative numbers
+// Function to check and throw an exception if there are negative numbers.
 void checkNegatives(const vector<int> &numbers) {
     vector<int> negatives = collectNegatives(numbers);
     if (!negatives.empty()) {
